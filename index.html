@@ -1,0 +1,324 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Marrow Bread Co. — Sourdough Bakery, London ON</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,400;9..144,500;9..144,600&family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --ink:#1F1B16;
+    --parchment:#F1EAD9;
+    --parchment-warm:#EAE0C9;
+    --wheat:#BE8A3D;
+    --rust:#9C4A2E;
+    --sage:#71765C;
+    --line: rgba(31,27,22,0.14);
+    --max: 1100px;
+  }
+  *{box-sizing:border-box;}
+  html{scroll-behavior:smooth;}
+  body{
+    margin:0;
+    background:var(--parchment);
+    color:var(--ink);
+    font-family:'Inter', sans-serif;
+    font-size:16px;
+    line-height:1.6;
+    -webkit-font-smoothing:antialiased;
+  }
+  h1,h2,h3{
+    font-family:'Fraunces', serif;
+    font-weight:500;
+    margin:0;
+    letter-spacing:-0.01em;
+  }
+  a{color:inherit;}
+  img,svg{max-width:100%; display:block;}
+  .wrap{max-width:var(--max); margin:0 auto; padding:0 32px;}
+  .visually-hidden{position:absolute; width:1px;height:1px; overflow:hidden; clip:rect(0,0,0,0);}
+
+  /* ---------- header ---------- */
+  header{
+    position:sticky; top:0; z-index:20;
+    background:rgba(241,234,217,0.92);
+    backdrop-filter: blur(6px);
+    border-bottom:1px solid var(--line);
+  }
+  .nav{
+    display:flex; align-items:center; justify-content:space-between;
+    padding:20px 32px; max-width:var(--max); margin:0 auto;
+  }
+  .logo{font-size:1.15rem; font-weight:500;}
+  .nav-links{display:flex; gap:36px; list-style:none; margin:0; padding:0;}
+  .nav-links a{
+    text-decoration:none; font-size:0.95rem; color:var(--ink);
+    border-bottom:1px solid transparent; padding-bottom:2px;
+    transition:border-color 0.2s ease;
+  }
+  .nav-links a:hover{border-color:var(--wheat);}
+  .nav-cta{
+    background:var(--rust); color:var(--parchment); text-decoration:none;
+    padding:10px 20px; border-radius:2px; font-size:0.92rem;
+    transition:background 0.2s ease;
+  }
+  .nav-cta:hover{background:#7f3c24;}
+  .menu-toggle{display:none;}
+
+  /* ---------- hero ---------- */
+  .hero{
+    padding:96px 32px 80px;
+    max-width:var(--max); margin:0 auto;
+    display:grid; grid-template-columns:1.15fr 0.85fr; gap:64px; align-items:center;
+  }
+  .hero h1{
+    font-size:clamp(2.6rem, 5vw, 4rem);
+    line-height:1.06;
+    max-width:11ch;
+  }
+  .hero p.lede{
+    margin-top:24px; font-size:1.1rem; max-width:42ch; color:#3a352c;
+  }
+  .hero .actions{margin-top:36px; display:flex; gap:16px; flex-wrap:wrap;}
+  .btn-primary{
+    background:var(--ink); color:var(--parchment); text-decoration:none;
+    padding:14px 28px; border-radius:2px; font-size:0.95rem;
+    transition:transform 0.15s ease;
+    display:inline-block;
+  }
+  .btn-primary:hover{transform:translateY(-1px);}
+  .btn-ghost{
+    border:1px solid var(--ink); text-decoration:none; color:var(--ink);
+    padding:14px 28px; border-radius:2px; font-size:0.95rem;
+  }
+  .hero-fact{margin-top:44px; padding-top:24px; border-top:1px solid var(--line); display:flex; gap:40px;}
+  .hero-fact div span{display:block;}
+  .hero-fact .num{font-family:'Fraunces', serif; font-size:1.8rem;}
+  .hero-fact .label{font-size:0.85rem; color:var(--sage); margin-top:2px;}
+
+  .hero-art{position:relative;}
+  .loaf-svg{width:100%; height:auto;}
+
+  /* ---------- section shell ---------- */
+  section{padding:80px 32px;}
+  .section-head{max-width:520px; margin-bottom:48px;}
+  .section-head h2{font-size:clamp(1.8rem, 3vw, 2.4rem);}
+  .section-head p{margin-top:14px; color:#3a352c; font-size:1.02rem;}
+
+  /* ---------- menu (real list, not cards) ---------- */
+  .menu-section{background:var(--parchment-warm); border-top:1px solid var(--line); border-bottom:1px solid var(--line);}
+  .menu-list{max-width:var(--max); margin:0 auto;}
+  .menu-row{
+    display:grid; grid-template-columns:1fr auto auto; gap:24px; align-items:baseline;
+    padding:22px 0; border-bottom:1px solid var(--line);
+  }
+  .menu-row:last-child{border-bottom:none;}
+  .menu-row .name{font-family:'Fraunces', serif; font-size:1.2rem;}
+  .menu-row .desc{grid-column:1; font-size:0.92rem; color:var(--sage); margin-top:4px;}
+  .menu-row .price{font-family:'Fraunces', serif; font-size:1.1rem; color:var(--rust); text-align:right; white-space:nowrap;}
+  .menu-row .avail{font-size:0.8rem; color:var(--sage); white-space:nowrap; text-align:right;}
+
+  /* ---------- process ---------- */
+  .process{display:grid; grid-template-columns:repeat(3,1fr); gap:40px;}
+  .process-step{border-top:2px solid var(--ink); padding-top:20px;}
+  .process-step h3{font-size:1.15rem; font-weight:500;}
+  .process-step p{margin-top:10px; font-size:0.95rem; color:#3a352c;}
+  .process-step .time{font-size:0.82rem; color:var(--wheat); margin-bottom:6px; display:block;}
+
+  /* ---------- quote ---------- */
+  .quote-section{max-width:760px; margin:0 auto; text-align:left; padding:60px 32px;}
+  blockquote{
+    font-family:'Fraunces', serif; font-size:clamp(1.4rem, 2.6vw, 1.9rem);
+    line-height:1.45; margin:0; font-weight:400;
+  }
+  .quote-attr{margin-top:20px; font-size:0.9rem; color:var(--sage);}
+
+  /* ---------- visit / footer ---------- */
+  .visit{background:var(--ink); color:var(--parchment);}
+  .visit .wrap{
+    display:grid; grid-template-columns:1fr 1fr 1fr; gap:48px;
+    padding:72px 32px;
+  }
+  .visit h3{color:var(--parchment); font-size:1.3rem; margin-bottom:16px;}
+  .visit p, .visit a{color:#cfc7b3; font-size:0.95rem; text-decoration:none;}
+  .visit .hours-row{display:flex; justify-content:space-between; padding:6px 0; border-bottom:1px solid rgba(241,234,217,0.1); font-size:0.92rem;}
+  footer{
+    background:var(--ink); color:#a89e88; font-size:0.82rem;
+    padding:20px 32px; border-top:1px solid rgba(241,234,217,0.1);
+    text-align:center;
+  }
+
+  /* ---------- responsive ---------- */
+  @media (max-width: 860px){
+    .hero{grid-template-columns:1fr; padding-top:64px;}
+    .hero-art{order:-1; max-width:260px; margin:0 auto;}
+    .nav-links{display:none;}
+    .process{grid-template-columns:1fr;}
+    .visit .wrap{grid-template-columns:1fr; gap:36px;}
+    .menu-row{grid-template-columns:1fr auto;}
+    .menu-row .avail{display:none;}
+  }
+
+  @media (prefers-reduced-motion: reduce){
+    html{scroll-behavior:auto;}
+    *{transition:none !important;}
+  }
+
+  :focus-visible{outline:2px solid var(--rust); outline-offset:2px;}
+</style>
+</head>
+<body>
+
+<header>
+  <nav class="nav">
+    <div class="logo">Marrow Bread Co.</div>
+    <ul class="nav-links">
+      <li><a href="#menu">Menu</a></li>
+      <li><a href="#process">Our process</a></li>
+      <li><a href="#visit">Visit</a></li>
+    </ul>
+    <a class="nav-cta" href="#visit">Order ahead</a>
+  </nav>
+</header>
+
+<main>
+  <section class="hero">
+    <div>
+      <h1>Bread that takes three days, on purpose.</h1>
+      <p class="lede">A neighbourhood sourdough bakery in Old East Village. Wild-fermented, stone-milled, baked in small batches every morning — never more than the day calls for.</p>
+      <div class="actions">
+        <a class="btn-primary" href="#menu">See today's bake</a>
+        <a class="btn-ghost" href="#visit">Find us</a>
+      </div>
+      <div class="hero-fact">
+        <div><span class="num">72hr</span><span class="label">fermentation, minimum</span></div>
+        <div><span class="num">5am</span><span class="label">first loaf out of the oven</span></div>
+        <div><span class="num">0</span><span class="label">commercial yeast, ever</span></div>
+      </div>
+    </div>
+    <div class="hero-art">
+      <svg class="loaf-svg" viewBox="0 0 320 320" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Illustration of a scored sourdough loaf">
+        <ellipse cx="160" cy="270" rx="120" ry="14" fill="#1F1B16" opacity="0.08"/>
+        <path d="M50 190 C50 120 100 70 160 70 C220 70 270 120 270 190 C270 235 220 255 160 255 C100 255 50 235 50 190 Z" fill="#C9976A"/>
+        <path d="M50 190 C50 120 100 70 160 70 C220 70 270 120 270 190" fill="none" stroke="#9C4A2E" stroke-width="2" opacity="0.3"/>
+        <path d="M95 130 C130 110 190 110 225 130" stroke="#7f3c24" stroke-width="4" fill="none" stroke-linecap="round"/>
+        <path d="M85 160 C130 138 190 138 235 160" stroke="#7f3c24" stroke-width="4" fill="none" stroke-linecap="round"/>
+        <path d="M85 190 C130 168 190 168 235 190" stroke="#7f3c24" stroke-width="4" fill="none" stroke-linecap="round"/>
+        <path d="M95 218 C130 198 190 198 225 218" stroke="#7f3c24" stroke-width="4" fill="none" stroke-linecap="round"/>
+        <ellipse cx="160" cy="200" rx="118" ry="58" fill="#BE8A3D" opacity="0.18"/>
+      </svg>
+    </div>
+  </section>
+
+  <section class="menu-section" id="menu">
+    <div class="wrap">
+      <div class="section-head">
+        <h2>Today's bake</h2>
+        <p>We bake a rotating list built around one constant: the country loaf. Everything else changes with the season and what the mill sends us.</p>
+      </div>
+      <div class="menu-list">
+        <div class="menu-row">
+          <div>
+            <div class="name">Country loaf</div>
+            <div class="desc">Stone-milled wheat, dark rye, wild starter — our everyday bread.</div>
+          </div>
+          <div class="price">$9</div>
+          <div class="avail">Daily</div>
+        </div>
+        <div class="menu-row">
+          <div>
+            <div class="name">Rosemary & sea salt</div>
+            <div class="desc">Same base dough, olive oil folded through, flaky salt on top.</div>
+          </div>
+          <div class="price">$10</div>
+          <div class="avail">Tue, Thu, Sat</div>
+        </div>
+        <div class="menu-row">
+          <div>
+            <div class="name">Seeded rye</div>
+            <div class="desc">Dense and dark — sunflower, flax, and caraway.</div>
+          </div>
+          <div class="price">$10</div>
+          <div class="avail">Wed, Fri</div>
+        </div>
+        <div class="menu-row">
+          <div>
+            <div class="name">Morning bun</div>
+            <div class="desc">Laminated croissant dough, brown butter, sugared crust.</div>
+          </div>
+          <div class="price">$5</div>
+          <div class="avail">Daily, sells out by 9</div>
+        </div>
+        <div class="menu-row">
+          <div>
+            <div class="name">Weekend focaccia, by the pan</div>
+            <div class="desc">Whatever's in season on top — ask what today's is.</div>
+          </div>
+          <div class="price">$28</div>
+          <div class="avail">Sat, Sun only</div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section id="process">
+    <div class="wrap">
+      <div class="section-head">
+        <h2>Why it takes three days</h2>
+        <p>Slow fermentation isn't a marketing line here — it's the actual schedule the dough is on before it ever sees an oven.</p>
+      </div>
+      <div class="process">
+        <div class="process-step">
+          <span class="time">Day 1, evening</span>
+          <h3>Mix and autolyse</h3>
+          <p>Flour and water rest together for an hour before the starter and salt go in, so the gluten develops on its own first.</p>
+        </div>
+        <div class="process-step">
+          <span class="time">Day 2, overnight</span>
+          <h3>Cold retard</h3>
+          <p>Shaped loaves go into the walk-in at 3°C for 18 hours. This is where most of the flavour actually comes from.</p>
+        </div>
+        <div class="process-step">
+          <span class="time">Day 3, 5am</span>
+          <h3>Bake</h3>
+          <p>Straight from cold into a 260°C stone oven, steam-injected for the first ten minutes to get the crust we're known for.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <div class="quote-section">
+    <blockquote>"I stopped buying bread from the grocery store the week Marrow opened. There's genuinely no going back to the soft stuff."</blockquote>
+    <p class="quote-attr">— A regular, most Saturday mornings since 2024</p>
+  </div>
+
+  <section class="visit" id="visit">
+    <div class="wrap">
+      <div>
+        <h3>Visit</h3>
+        <p>412 Dundas St<br>London, ON N6B 1V8</p>
+      </div>
+      <div>
+        <h3>Hours</h3>
+        <div class="hours-row"><span>Tue – Fri</span><span>7am – 2pm</span></div>
+        <div class="hours-row"><span>Sat – Sun</span><span>8am – 1pm</span></div>
+        <div class="hours-row"><span>Monday</span><span>Closed</span></div>
+      </div>
+      <div>
+        <h3>Order ahead</h3>
+        <p>We sell out most days by early afternoon. Call or email to hold a loaf.</p>
+        <p><a href="tel:5195550148">(519) 555-0148</a></p>
+        <p><a href="mailto:hello@marrowbread.ca">hello@marrowbread.ca</a></p>
+      </div>
+    </div>
+  </section>
+</main>
+
+<footer>
+  Marrow Bread Co., London ON — demo site, not a real bakery
+</footer>
+
+</body>
+</html>
